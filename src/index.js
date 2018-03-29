@@ -25,12 +25,16 @@ const schema = new GraphQLSchema({
 	})
 });
 
+app.get('/', (req, res) => {
+	return res.status(200).json();
+})
+
 app.use('/graphql', graphqlHTTP({
 	schema,
 	graphiql: true
 }));
 
-app.listen(3000, () => {
+const server = app.listen(PORT, () => {
 	console.log('< ---------------------------------------');
 	console.log('< ---------------------------------------');
 	console.log(`< Server Listen Port: ${PORT}`);
@@ -38,3 +42,5 @@ app.listen(3000, () => {
 	console.log('< ---------------------------------------');
 	console.log('< ---------------------------------------');
 });
+
+module.exports = server;
